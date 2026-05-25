@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Молоді Таланти — HoopLegends</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .card-hover:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 25px 50px -12px rgb(234 179 8); }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white">
+
+  <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-yellow-500">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <h1 class="text-3xl font-bold flex items-center gap-3">
+        <i class="fas fa-basketball-ball text-yellow-500"></i>
+        HoopLegends
+      </h1>
+      <div class="flex gap-8 text-lg">
+        <a href="index.html" class="hover:text-yellow-400 transition">Головна</a>
+        <a href="legends.html" class="hover:text-yellow-400 transition">Легенди</a>
+        <a href="talents.html" class="text-yellow-400 font-bold">Молоді Таланти</a>
+        <a href="myteam.html" class="hover:text-yellow-400 transition">Моя Команда</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="h-screen bg-zinc-900 flex items-center justify-center text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1627622808081-3c6e5c3c3e3e?q=80&w=2070')] bg-cover opacity-40"></div>
+    <div class="relative z-10 max-w-5xl px-6">
+      <h2 class="text-6xl md:text-7xl font-black mb-6">НОВЕ ПОКОЛІННЯ</h2>
+      <p class="text-3xl text-yellow-400">Молоді зірки NBA 2026</p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16">Молоді Таланти NBA</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="talents-grid"></div>
+    </div>
+  </section>
+
+  <div id="playerModal" class="hidden fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4">
+    <div class="bg-zinc-900 max-w-2xl w-full rounded-3xl overflow-hidden">
+      <div class="relative">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-4xl text-white hover:text-yellow-500 z-10">×</button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const youngPlayers = [
+      {
+        name: "Віктор Вембаньяма",
+        team: "San Antonio Spurs",
+        position: "PF/C",
+        img: "https://images.unsplash.com/photo-1627622808081-3c6e5c3c3e3e?w=800",
+        bio: "Французький феномен 2.24 м. Один з найперспективніших гравців.",
+        teams: ["San Antonio Spurs"],
+        achievements: ["Новобранець року", "Дефенсив Плеєр Року"],
+        stats: "24.8 PPG • 11.2 RPG"
+      },
+      {
+        name: "Шей Гілджес-Александер",
+        team: "Oklahoma City Thunder",
+        position: "PG",
+        img: "https://images.unsplash.com/photo-1611003229186-5e40c0f4a5b0?w=800",
+        bio: "Один з найкращих скорерів сучасної NBA.",
+        teams: ["Oklahoma City Thunder"],
+        achievements: ["MVP сезону"],
+        stats: "31.2 PPG • 6.5 APG"
+      },
+      {
+        name: "Лука Дончіч",
+        team: "Dallas Mavericks",
+        position: "PG/SF",
+        img: "https://picsum.photos/id/201/800/600",
+        bio: "Словенський геній, майстер тріпл-даблів.",
+        teams: ["Dallas Mavericks"],
+        achievements: ["MVP сезону"],
+        stats: "28.5 PPG • 8.7 RPG"
+      },
+      {
+        name: "Ентоні Едвардс",
+        team: "Minnesota Timberwolves",
+        position: "SG",
+        img: "https://picsum.photos/id/237/800/600",
+        bio: "Антигравітаційний атлет.",
+        teams: ["Minnesota Timberwolves"],
+        achievements: ["All-Star"],
+        stats: "26.4 PPG"
+      }
+    ];
+
+    function renderTalents() {
+      const grid = document.getElementById('talents-grid');
+      grid.innerHTML = '';
+      youngPlayers.forEach((player, index) => {
+        const card = document.createElement('div');
+        card.className = `bg-zinc-800 rounded-3xl overflow-hidden card-hover fade-in cursor-pointer`;
+        card.style.animationDelay = `${index * 100}ms`;
+        card.innerHTML = `
+          <img src="${player.img}" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold">${player.name}</h3>
+            <p class="text-yellow-500">${player.team}</p>
+          </div>
+        `;
+        card.onclick = () => showModal(player);
+        grid.appendChild(card);
+      });
+      setTimeout(() => document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')), 200);
+    }
+
+    function showModal(player) {
+      document.getElementById('modal-content').innerHTML = `
+        <img src="${player.img}" class="w-full h-80 object-cover">
+        <div class="p-8">
+          <h2 class="text-4xl font-bold">${player.name}</h2>
+          <p class="text-yellow-500">${player.position} • ${player.team}</p>
+          <p class="my-6 text-zinc-300">${player.bio}</p>
+          <p class="text-2xl font-mono">${player.stats}</p>
+        </div>`;
+      document.getElementById('playerModal').classList.remove('hidden');
+      document.getElementById('playerModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('playerModal').classList.add('hidden');
+      document.getElementById('playerModal').classList.remove('flex');
+    }
+
+    window.onload = renderTalents;
+  </script>
+</body>
+</html>
