@@ -7,9 +7,19 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
   <style>
-    .card-hover:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 25px 50px -12px rgb(234 179 8); }
-    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .card-hover:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 25px 50px -12px rgb(234 179 8);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .nav-link { transition: all 0.3s; }
     .nav-link.active { color: #eab308; font-weight: bold; }
   </style>
@@ -31,7 +41,6 @@
     </div>
   </nav>
 
-  <!-- Решта коду legends.html (hero + grid + modal) залишається той самий, що я давав раніше -->
   <section class="h-screen bg-zinc-900 flex items-center justify-center text-center relative overflow-hidden">
     <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2070')] bg-cover opacity-40"></div>
     <div class="relative z-10 max-w-5xl px-6">
@@ -47,7 +56,7 @@
     </div>
   </section>
 
-  <!-- Modal (той самий) -->
+  <!-- Modal -->
   <div id="playerModal" class="hidden fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 max-w-2xl w-full rounded-3xl overflow-hidden">
       <div class="relative">
@@ -58,9 +67,154 @@
   </div>
 
   <script>
-    // (Тут встав той самий script з legends.html, який я давав раніше)
-    const legends = [ /* ... той самий масив ... */ ];
-    // renderLegends(), showModal(), closeModal() — все як раніше
+    const legends = [
+      {
+        name: "Майкл Джордан",
+        team: "Chicago Bulls",
+        position: "SG",
+        img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800",
+        bio: "Найвеличніший гравець в історії баскетболу. Символ переможного менталітету.",
+        teams: ["Chicago Bulls", "Washington Wizards"],
+        achievements: ["6× чемпіон NBA", "6× MVP фіналу", "5× MVP сезону", "14× All-Star"],
+        stats: "30.1 PPG • 6.2 RPG • 5.3 APG"
+      },
+      {
+        name: "Леброн Джеймс",
+        team: "Los Angeles Lakers",
+        position: "SF/PF",
+        img: "https://images.unsplash.com/photo-1611003229186-5e40c0f4a5b0?w=800",
+        bio: "Король сучасного баскетболу. Єдиний гравець з 40 000+ очками.",
+        teams: ["Cleveland Cavaliers", "Miami Heat", "Los Angeles Lakers"],
+        achievements: ["4× чемпіон NBA", "4× MVP фіналу", "4× MVP сезону"],
+        stats: "27.1 PPG • 7.5 RPG • 7.4 APG"
+      },
+      {
+        name: "Кобі Браянт",
+        team: "Los Angeles Lakers",
+        position: "SG",
+        img: "https://images.unsplash.com/photo-1594737625785-a6cbdabd3321?w=800",
+        bio: "Mamba Mentality. Легендарний перфекціоніст.",
+        teams: ["Los Angeles Lakers"],
+        achievements: ["5× чемпіон NBA", "2× MVP фіналу", "18× All-Star"],
+        stats: "25.0 PPG • 5.2 RPG • 4.7 APG"
+      },
+      {
+        name: "Стівен Каррі",
+        team: "Golden State Warriors",
+        position: "PG",
+        img: "https://images.unsplash.com/photo-1589333242123-2f0d9f4d6d6e?w=800",
+        bio: "Змінив баскетбол назавжди. Найкращий снайпер в історії.",
+        teams: ["Golden State Warriors"],
+        achievements: ["4× чемпіон NBA", "2× MVP сезону"],
+        stats: "24.8 PPG • 4.7 RPG • 6.4 APG"
+      },
+      {
+        name: "Кевін Дюрант",
+        team: "Phoenix Suns",
+        position: "SF",
+        img: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=800",
+        bio: "Скорінг-машина з унікальним зростом.",
+        teams: ["OKC Thunder", "Golden State Warriors", "Brooklyn Nets", "Phoenix Suns"],
+        achievements: ["2× чемпіон NBA", "2× MVP фіналу"],
+        stats: "27.3 PPG • 7.0 RPG • 4.4 APG"
+      },
+      {
+        name: "Шакіл О'Ніл",
+        team: "Los Angeles Lakers",
+        position: "C",
+        img: "https://picsum.photos/id/1015/800/600",
+        bio: "Найдомінуючий центровий в історії NBA.",
+        teams: ["Orlando Magic", "Los Angeles Lakers", "Miami Heat"],
+        achievements: ["4× чемпіон NBA", "3× MVP фіналу"],
+        stats: "23.7 PPG • 10.9 RPG • 2.3 BPG"
+      },
+      {
+        name: "Яніс Антетокунмпо",
+        team: "Milwaukee Bucks",
+        position: "PF",
+        img: "https://picsum.photos/id/1015/800/600",
+        bio: "Greek Freak. Один з найатлетичніших гравців.",
+        teams: ["Milwaukee Bucks"],
+        achievements: ["1× чемпіон NBA", "2× MVP сезону"],
+        stats: "24.5 PPG • 11.8 RPG"
+      },
+      {
+        name: "Тім Данкан",
+        team: "San Antonio Spurs",
+        position: "PF/C",
+        img: "https://picsum.photos/id/201/800/600",
+        bio: "Один з найкращих захисників і лідерів в історії.",
+        teams: ["San Antonio Spurs"],
+        achievements: ["5× чемпіон NBA", "3× MVP фіналу"],
+        stats: "19.0 PPG • 10.8 RPG"
+      }
+    ];
+
+    function renderLegends() {
+      const grid = document.getElementById('legends-grid');
+      grid.innerHTML = '';
+
+      legends.forEach((player, index) => {
+        const card = document.createElement('div');
+        card.className = `bg-zinc-800 rounded-3xl overflow-hidden card-hover fade-in cursor-pointer`;
+        card.style.animationDelay = `${index * 80}ms`;
+        card.innerHTML = `
+          <img src="${player.img}" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold">${player.name}</h3>
+            <p class="text-yellow-500">${player.team} • ${player.position}</p>
+            <p class="text-sm text-zinc-400 mt-3 line-clamp-3">${player.bio}</p>
+          </div>
+        `;
+        card.onclick = () => showModal(player);
+        grid.appendChild(card);
+      });
+
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+      }, 300);
+    }
+
+    function showModal(player) {
+      const modalContent = document.getElementById('modal-content');
+      modalContent.innerHTML = `
+        <img src="${player.img}" class="w-full h-80 object-cover">
+        <div class="p-8">
+          <h2 class="text-4xl font-bold mb-1">${player.name}</h2>
+          <p class="text-yellow-500 text-xl">${player.position} • ${player.team}</p>
+          
+          <div class="my-8">
+            <h4 class="text-yellow-400 font-bold mb-3">Команди в кар'єрі:</h4>
+            <div class="flex flex-wrap gap-2">
+              ${player.teams.map(team => `<span class="bg-zinc-800 px-4 py-2 rounded-2xl text-sm">${team}</span>`).join('')}
+            </div>
+          </div>
+          
+          <p class="text-zinc-300 mb-8">${player.bio}</p>
+          
+          <div class="mb-8">
+            <h4 class="text-yellow-400 font-bold mb-4">Головні досягнення:</h4>
+            <ul class="space-y-3">
+              ${player.achievements.map(a => `<li class="flex items-center gap-3"><i class="fas fa-trophy text-yellow-500"></i>${a}</li>`).join('')}
+            </ul>
+          </div>
+          
+          <div class="bg-zinc-800 p-6 rounded-2xl">
+            <h4 class="text-yellow-400 font-bold mb-2">Ключова статистика:</h4>
+            <p class="text-3xl font-mono">${player.stats}</p>
+          </div>
+        </div>
+      `;
+      document.getElementById('playerModal').classList.remove('hidden');
+      document.getElementById('playerModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('playerModal').classList.add('hidden');
+      document.getElementById('playerModal').classList.remove('flex');
+    }
+
+    window.onload = renderLegends;
   </script>
 </body>
 </html>
