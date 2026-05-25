@@ -10,6 +10,8 @@
     .card-hover:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 25px 50px -12px rgb(234 179 8); }
     .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .nav-link { transition: all 0.3s; }
+    .nav-link.active { color: #eab308; font-weight: bold; }
   </style>
 </head>
 <body class="bg-zinc-950 text-white">
@@ -21,10 +23,10 @@
         HoopLegends
       </h1>
       <div class="flex gap-8 text-lg">
-        <a href="index.html" class="hover:text-yellow-400 transition">Головна</a>
-        <a href="legends.html" class="hover:text-yellow-400 transition">Легенди</a>
-        <a href="talents.html" class="text-yellow-400 font-bold">Молоді Таланти</a>
-        <a href="myteam.html" class="hover:text-yellow-400 transition">Моя Команда</a>
+        <a href="index.html" class="nav-link hover:text-yellow-400 transition">Головна</a>
+        <a href="legends.html" class="nav-link hover:text-yellow-400 transition">Легенди</a>
+        <a href="talents.html" class="nav-link active">Молоді Таланти</a>
+        <a href="myteam.html" class="nav-link hover:text-yellow-400 transition">Моя Команда</a>
       </div>
     </div>
   </nav>
@@ -56,44 +58,28 @@
   <script>
     const youngPlayers = [
       {
-        name: "Віктор Вембаньяма",
-        team: "San Antonio Spurs",
-        position: "PF/C",
+        name: "Віктор Вембаньяма", team: "San Antonio Spurs", position: "PF/C",
         img: "https://images.unsplash.com/photo-1627622808081-3c6e5c3c3e3e?w=800",
-        bio: "Французький феномен 2.24 м. Один з найперспективніших гравців.",
-        teams: ["San Antonio Spurs"],
-        achievements: ["Новобранець року", "Дефенсив Плеєр Року"],
-        stats: "24.8 PPG • 11.2 RPG"
+        bio: "Французький феномен висотою 224 см.",
+        teams: ["San Antonio Spurs"], achievements: ["Новобранець року"], stats: "24.8 PPG • 11.2 RPG"
       },
       {
-        name: "Шей Гілджес-Александер",
-        team: "Oklahoma City Thunder",
-        position: "PG",
+        name: "Шей Гілджес-Александер", team: "Oklahoma City Thunder", position: "PG",
         img: "https://images.unsplash.com/photo-1611003229186-5e40c0f4a5b0?w=800",
         bio: "Один з найкращих скорерів сучасної NBA.",
-        teams: ["Oklahoma City Thunder"],
-        achievements: ["MVP сезону"],
-        stats: "31.2 PPG • 6.5 APG"
+        teams: ["Oklahoma City Thunder"], achievements: ["MVP сезону"], stats: "31.2 PPG"
       },
       {
-        name: "Лука Дончіч",
-        team: "Dallas Mavericks",
-        position: "PG/SF",
+        name: "Лука Дончіч", team: "Dallas Mavericks", position: "PG/SF",
         img: "https://picsum.photos/id/201/800/600",
-        bio: "Словенський геній, майстер тріпл-даблів.",
-        teams: ["Dallas Mavericks"],
-        achievements: ["MVP сезону"],
-        stats: "28.5 PPG • 8.7 RPG"
+        bio: "Словенський геній.",
+        teams: ["Dallas Mavericks"], achievements: ["MVP сезону"], stats: "28.5 PPG"
       },
       {
-        name: "Ентоні Едвардс",
-        team: "Minnesota Timberwolves",
-        position: "SG",
+        name: "Ентоні Едвардс", team: "Minnesota Timberwolves", position: "SG",
         img: "https://picsum.photos/id/237/800/600",
         bio: "Антигравітаційний атлет.",
-        teams: ["Minnesota Timberwolves"],
-        achievements: ["All-Star"],
-        stats: "26.4 PPG"
+        teams: ["Minnesota Timberwolves"], achievements: ["All-Star"], stats: "26.4 PPG"
       }
     ];
 
